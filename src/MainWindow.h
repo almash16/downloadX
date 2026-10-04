@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QElapsedTimer>
 #include <QMainWindow>
 
 class QLineEdit;
@@ -20,5 +21,14 @@ private:
 
   DownloadManager *downloadManager;
 
+  QElapsedTimer speedTimer;
+
+  qint64 lastReceived = 0;
+  qint64 totalSize = 0;
+
   void startDownload();
+
+  QString formatSize(qint64 bytes) const;
+  QString formatSpeed(double bytesPerSecond) const;
+  QString formatTime(qint64 seconds) const;
 };
